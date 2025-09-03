@@ -1,12 +1,8 @@
 from pydantic import BaseModel
-from typing import Annotated
+from typing import Annotated, Optional
 from enum import Enum
 
-class ArticleStatus(Enum):
-    draft = "draft"
-    published = "published"
-    archived = "archived"
-
+from app.models.article import ArticleStatus
 
 class ArticleBase(BaseModel):
     title: str
@@ -29,4 +25,4 @@ class ArticleResponse(ArticleBase):
     author_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
