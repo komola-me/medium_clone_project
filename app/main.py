@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers.auth import router as auth_router
 from app.routers.article import router as article_router
 from app.middleware import LoggingMiddleware
+from app.admin.settings import admin
 
 app = FastAPI(debug=True)
 
@@ -18,3 +19,5 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(article_router)
+
+admin.mount_to(app=app)
